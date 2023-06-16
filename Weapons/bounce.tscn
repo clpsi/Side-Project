@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://vi16mj78cy76"]
+
+[ext_resource type="Script" path="res://Weapons/bounce.gd" id="1_twc7w"]
+[ext_resource type="Texture2D" uid="uid://bc5pdywun61mi" path="res://Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet-Black.png" id="2_kics1"]
+[ext_resource type="Script" path="res://Weapons/Countdown.gd" id="3_armuv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ka8v"]
+height = 40.0
+
+[node name="bullet" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+collision_layer = 8
+script = ExtResource("1_twc7w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.843137, 0, 0, 1)
+texture = ExtResource("2_kics1")
+hframes = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8ka8v")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+script = ExtResource("3_armuv")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=3 uid="uid://bgg6ls3f2oefc"]
+
+[ext_resource type="Texture2D" uid="uid://pliyg0d4t2pg" path="res://Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Flame.png" id="1_d6hi6"]
+[ext_resource type="Script" path="res://Weapons/Countdown.gd" id="2_02fuh"]
+[ext_resource type="Texture2D" uid="uid://bdylwefjo0oa8" path="res://Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Line.png" id="3_csyan"]
+
+[sub_resource type="Gradient" id="Gradient_hp8r6"]
+offsets = PackedFloat32Array(0.144531, 0.847896, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vboc7"]
+gradient = SubResource("Gradient_hp8r6")
+
+[sub_resource type="Curve" id="Curve_4tal2"]
+max_value = 5.0
+_data = [Vector2(0, 0.315315), 0.0, 0.330744, 0, 0, Vector2(1, 5), 1.76315, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nc0of"]
+curve = SubResource("Curve_4tal2")
+
+[sub_resource type="Curve" id="Curve_h506v"]
+_data = [Vector2(0, 1), 0.0, 0.00971215, 0, 0, Vector2(1, 0.45045), -1.9972, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xnyfq"]
+curve = SubResource("Curve_h506v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vl236"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 30.0
+emission_ring_inner_radius = 30.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 20.0
+radial_accel_max = 50.0
+radial_accel_curve = SubResource("CurveTexture_nc0of")
+angle_max = 360.0
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_xnyfq")
+color_ramp = SubResource("GradientTexture1D_vboc7")
+
+[sub_resource type="Curve" id="Curve_u2kcf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.21236, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ks0n7"]
+width = 100
+curve = SubResource("Curve_u2kcf")
+
+[sub_resource type="Curve" id="Curve_1ijyq"]
+min_value = 0.4
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.4), -1.83352, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nqulg"]
+width = 100
+curve = SubResource("Curve_1ijyq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iurr4"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 30.0
+emission_ring_inner_radius = 0.0
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 250, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 500.0
+radial_accel_max = 1000.0
+radial_accel_curve = SubResource("CurveTexture_ks0n7")
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_nqulg")
+color = Color(1, 0.784314, 0, 1)
+
+[node name="explosion" type="GPUParticles2D"]
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_vl236")
+texture = ExtResource("1_d6hi6")
+lifetime = 3.0
+one_shot = true
+preprocess = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+script = ExtResource("2_02fuh")
+
+[node name="sparks" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_iurr4")
+texture = ExtResource("3_csyan")
+one_shot = true
+preprocess = 0.5
+explosiveness = 0.7
+fixed_fps = 0
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

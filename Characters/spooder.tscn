@@ -1,0 +1,257 @@
+[gd_scene load_steps=8 format=3 uid="uid://na8vjrb5crqq"]
+
+[ext_resource type="Script" path="res://Characters/spooder.gd" id="1_dwl73"]
+[ext_resource type="Script" path="res://Characters/RayCastScript.gd" id="2_6eg08"]
+[ext_resource type="Texture2D" uid="uid://dt4l0sd1h4pnv" path="res://Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="2_gpl5u"]
+[ext_resource type="Script" path="res://Characters/CurrentPos.gd" id="3_u4a5h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10bdu"]
+radius = 12.0
+height = 78.0
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_kx77o"]
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_flah7"]
+resource_local_to_scene = true
+enabled = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DFABRIK_kx77o")
+
+[node name="Spooder" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_dwl73")
+SPEED = 300.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("CapsuleShape2D_10bdu")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="CollisionShape2D"]
+position = Vector2(0, -24)
+modification_stack = SubResource("SkeletonModificationStack2D_flah7")
+
+[node name="Leg1" type="Bone2D" parent="CollisionShape2D/Skeleton2D"]
+rotation = 0.0872665
+rest = Transform2D(0.996195, 0.0871558, -0.0871558, 0.996195, 0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg1"]
+
+[node name="Leg1" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg1"]
+position = Vector2(32, 0)
+rotation = 0.523599
+rest = Transform2D(0.866025, 0.5, -0.5, 0.866025, 32, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg1/Leg1"]
+
+[node name="Leg1" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg1/Leg1"]
+position = Vector2(30, 0)
+rotation = 0.523599
+rest = Transform2D(0.866025, 0.5, -0.5, 0.866025, 30, 0)
+auto_calculate_length_and_angle = false
+length = 32.0
+bone_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg1/Leg1/Leg1"]
+
+[node name="Leg2" type="Bone2D" parent="CollisionShape2D/Skeleton2D"]
+rotation = -0.105035
+rest = Transform2D(0.994489, -0.104842, 0.104842, 0.994489, 0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg2"]
+
+[node name="Leg2" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg2"]
+position = Vector2(24, 0)
+rotation = 0.87769
+rest = Transform2D(0.63893, 0.769265, -0.769265, 0.63893, 24, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg2/Leg2"]
+
+[node name="Leg2" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg2/Leg2"]
+position = Vector2(30, 0)
+rotation = 0.686947
+rest = Transform2D(0.773186, 0.63418, -0.63418, 0.773186, 30, 0)
+auto_calculate_length_and_angle = false
+length = 32.0
+bone_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg2/Leg2/Leg2"]
+
+[node name="Leg3" type="Bone2D" parent="CollisionShape2D/Skeleton2D"]
+rotation = -0.317646
+rest = Transform2D(0.949973, -0.312331, 0.312331, 0.949973, 0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg3"]
+
+[node name="Leg3" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg3"]
+position = Vector2(16, 0)
+rotation = 1.26899
+rest = Transform2D(0.297245, 0.954801, -0.954801, 0.297245, 16, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg3/Leg3"]
+
+[node name="Leg3" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg3/Leg3"]
+position = Vector2(30, 0)
+rotation = 0.60821
+scale = Vector2(1, 1)
+rest = Transform2D(0.820672, 0.571399, -0.571399, 0.820672, 30, 0)
+auto_calculate_length_and_angle = false
+length = 32.0
+bone_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg3/Leg3/Leg3"]
+
+[node name="Leg4" type="Bone2D" parent="CollisionShape2D/Skeleton2D"]
+rotation = 3.05433
+scale = Vector2(1, 1)
+rest = Transform2D(-0.996195, 0.0871518, -0.0871518, -0.996195, 0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg4"]
+
+[node name="Leg4" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg4"]
+position = Vector2(32, 0)
+rotation = -0.523599
+rest = Transform2D(0.866025, -0.5, 0.5, 0.866025, 32, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg4/Leg4"]
+
+[node name="Leg4" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg4/Leg4"]
+position = Vector2(30, 0)
+rotation = -0.523599
+rest = Transform2D(0.866025, -0.5, 0.5, 0.866025, 30, 0)
+auto_calculate_length_and_angle = false
+length = 32.0
+bone_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg4/Leg4/Leg4"]
+
+[node name="Leg5" type="Bone2D" parent="CollisionShape2D/Skeleton2D"]
+rotation = -3.03687
+rest = Transform2D(-0.994522, -0.104531, 0.104531, -0.994522, 0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg5"]
+
+[node name="Leg5" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg5"]
+position = Vector2(24, 0)
+rotation = -0.877901
+rest = Transform2D(0.638767, -0.7694, 0.7694, 0.638767, 24, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg5/Leg5"]
+
+[node name="Leg5" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg5/Leg5"]
+position = Vector2(30, 0)
+rotation = -0.68766
+scale = Vector2(1, 1)
+rest = Transform2D(0.772733, -0.634731, 0.634731, 0.772733, 30, 0)
+auto_calculate_length_and_angle = false
+length = 32.0
+bone_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg5/Leg5/Leg5"]
+
+[node name="Leg6" type="Bone2D" parent="CollisionShape2D/Skeleton2D"]
+rotation = -2.82394
+scale = Vector2(1, 1)
+rest = Transform2D(-0.949971, -0.312337, 0.312337, -0.949971, 0, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg6"]
+
+[node name="Leg6" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg6"]
+position = Vector2(16, 0)
+rotation = -1.26885
+rest = Transform2D(0.297379, -0.954759, 0.954759, 0.297379, 16, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg6/Leg6"]
+
+[node name="Leg6" type="Bone2D" parent="CollisionShape2D/Skeleton2D/Leg6/Leg6"]
+position = Vector2(30, 0)
+rotation = -0.607375
+rest = Transform2D(0.821149, -0.570714, 0.570714, 0.821149, 30, 0)
+auto_calculate_length_and_angle = false
+length = 32.0
+bone_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D/Skeleton2D/Leg6/Leg6/Leg6"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(0, -24)
+texture = ExtResource("2_gpl5u")
+
+[node name="Targets" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Targets" node_paths=PackedStringArray("step_target")]
+position = Vector2(53, 37)
+rotation = -0.202952
+script = ExtResource("2_6eg08")
+step_target = NodePath("Leg1Target")
+
+[node name="Leg1Target" type="Node2D" parent="Targets/RayCast2D"]
+position = Vector2(17.4606, 34.2218)
+rotation = 0.202952
+
+[node name="RayCast2D2" type="RayCast2D" parent="Targets" node_paths=PackedStringArray("step_target")]
+position = Vector2(40, 36)
+rotation = -0.0698132
+script = ExtResource("2_6eg08")
+step_target = NodePath("Leg2Target")
+
+[node name="Leg2Target" type="Node2D" parent="Targets/RayCast2D2"]
+position = Vector2(0.620972, 34.1264)
+rotation = 0.0698132
+
+[node name="RayCast2D3" type="RayCast2D" parent="Targets" node_paths=PackedStringArray("step_target")]
+position = Vector2(22, 37)
+script = ExtResource("2_6eg08")
+step_target = NodePath("Leg3Target")
+
+[node name="Leg3Target" type="Node2D" parent="Targets/RayCast2D3"]
+position = Vector2(1, 28)
+
+[node name="RayCast2D4" type="RayCast2D" parent="Targets" node_paths=PackedStringArray("step_target")]
+position = Vector2(-22, 36)
+script = ExtResource("2_6eg08")
+step_target = NodePath("Leg4Target")
+
+[node name="Leg4Target" type="Node2D" parent="Targets/RayCast2D4"]
+position = Vector2(-36, 28)
+
+[node name="RayCast2D5" type="RayCast2D" parent="Targets" node_paths=PackedStringArray("step_target")]
+position = Vector2(-40, 37)
+rotation = 0.0698132
+script = ExtResource("2_6eg08")
+step_target = NodePath("Leg5Target")
+
+[node name="Leg5Target" type="Node2D" parent="Targets/RayCast2D5"]
+position = Vector2(-0.181458, 26.0762)
+rotation = -0.0698132
+
+[node name="RayCast2D6" type="RayCast2D" parent="Targets" node_paths=PackedStringArray("step_target")]
+position = Vector2(-53, 37)
+rotation = 0.202458
+script = ExtResource("2_6eg08")
+step_target = NodePath("Leg6Target")
+
+[node name="Leg6Target" type="Node2D" parent="Targets/RayCast2D6"]
+position = Vector2(35.7959, 20.2151)
+rotation = -0.202458
+
+[node name="CurrentPos" type="Node2D" parent="."]
+
+[node name="Leg1Target2" type="Node2D" parent="CurrentPos" node_paths=PackedStringArray("step_target")]
+position = Vector2(60, 70)
+script = ExtResource("3_u4a5h")
+step_target = NodePath("../../Targets/RayCast2D/Leg1Target")
+
+[node name="Leg2Target2" type="Node2D" parent="CurrentPos"]
+position = Vector2(43, 70)
+
+[node name="Leg3Target2" type="Node2D" parent="CurrentPos"]
+position = Vector2(23, 65)
+
+[node name="Leg4Target2" type="Node2D" parent="CurrentPos"]
+position = Vector2(-58, 64)
+
+[node name="Leg5Target2" type="Node2D" parent="CurrentPos"]
+position = Vector2(-42, 63)
+
+[node name="Leg6Target2" type="Node2D" parent="CurrentPos"]
+position = Vector2(-22, 64)

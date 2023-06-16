@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://qm6hjuy50uev"]
+
+[ext_resource type="Shader" path="res://Particles/fog.gdshader" id="1_kjxao"]
+
+[sub_resource type="Gradient" id="Gradient_md6sf"]
+offsets = PackedFloat32Array(0, 0.280172, 0.625, 0.99569)
+colors = PackedColorArray(0, 0, 0, 0, 0.266667, 0.266667, 0.266667, 0.219608, 0.448276, 0.448276, 0.448276, 1, 0.447059, 0.447059, 0.447059, 0.65098)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0ltes"]
+gradient = SubResource("Gradient_md6sf")
+width = 100
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kabvg"]
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vj2s2"]
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_kabvg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cy7x6"]
+shader = ExtResource("1_kjxao")
+shader_parameter/scroll1 = Vector2(0.01, 0.03)
+shader_parameter/scroll2 = Vector2(0.1, 0.1)
+shader_parameter/texture2 = SubResource("NoiseTexture2D_vj2s2")
+shader_parameter/colorTexture = SubResource("GradientTexture1D_0ltes")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eudxc"]
+seed = 3
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_743dq"]
+width = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_eudxc")
+
+[node name="fog" type="Sprite2D"]
+z_index = -2
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cy7x6")
+texture = SubResource("NoiseTexture2D_743dq")

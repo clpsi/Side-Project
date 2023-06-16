@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://do3vjk65e5lnx"]
+
+[ext_resource type="Shader" path="res://Particles/flame.gdshader" id="1_r1470"]
+
+[sub_resource type="Gradient" id="Gradient_pqlj0"]
+offsets = PackedFloat32Array(0, 0.215517, 0.288793, 0.413793, 0.616379)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_euxcb"]
+gradient = SubResource("Gradient_pqlj0")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3e0hx"]
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_shlcs"]
+seamless = true
+noise = SubResource("FastNoiseLite_3e0hx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_he40y"]
+shader = ExtResource("1_r1470")
+shader_parameter/scroll1 = Vector2(0.13, 0.34)
+shader_parameter/scroll2 = Vector2(0.241, 0.47)
+shader_parameter/texture2 = SubResource("NoiseTexture2D_shlcs")
+shader_parameter/colorTexture = SubResource("GradientTexture1D_euxcb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kr7in"]
+noise_type = 3
+seed = 3
+frequency = 0.007
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1geka"]
+seamless = true
+noise = SubResource("FastNoiseLite_kr7in")
+
+[node name="flame" type="Sprite2D"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_he40y")
+texture = SubResource("NoiseTexture2D_1geka")

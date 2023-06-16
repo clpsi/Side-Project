@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://drv2877501bbj"]
+
+[ext_resource type="Texture2D" uid="uid://bdylwefjo0oa8" path="res://Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Line.png" id="1_lphod"]
+[ext_resource type="Script" path="res://Weapons/Countdown.gd" id="2_mw2km"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_60185"]
+
+[sub_resource type="Gradient" id="Gradient_4vxfv"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.139159, 0.702265)
+colors = PackedColorArray(1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4lqdj"]
+gradient = SubResource("Gradient_4vxfv")
+width = 100
+
+[sub_resource type="Curve" id="Curve_kmdy8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yhjru"]
+curve = SubResource("Curve_kmdy8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m5pcd"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 200.0
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_yhjru")
+color_ramp = SubResource("GradientTexture1D_4lqdj")
+
+[node name="spread" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_60185")
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_m5pcd")
+texture = ExtResource("1_lphod")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+draw_order = 0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+script = ExtResource("2_mw2km")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

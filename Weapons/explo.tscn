@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2pxlqf1iishd"]
+
+[ext_resource type="Script" path="res://Weapons/explo.gd" id="1_dak0f"]
+[ext_resource type="Texture2D" uid="uid://bc5pdywun61mi" path="res://Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet-Black.png" id="2_ikplc"]
+[ext_resource type="Script" path="res://Weapons/Countdown.gd" id="3_ptr55"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ka8v"]
+height = 40.0
+
+[node name="explo" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_dak0f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ikplc")
+hframes = 4
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+script = ExtResource("3_ptr55")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8ka8v")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 27
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_8ka8v")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

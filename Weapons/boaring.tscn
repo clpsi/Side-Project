@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dekfyx8fk86nw"]
+
+[ext_resource type="Texture2D" uid="uid://bc5pdywun61mi" path="res://Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet-Black.png" id="1_fjbd4"]
+[ext_resource type="Script" path="res://Weapons/boaring.gd" id="1_lgvia"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ka8v"]
+radius = 20.0
+height = 40.0
+
+[node name="boar" type="Node2D"]
+script = ExtResource("1_lgvia")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fjbd4")
+flip_h = true
+hframes = 4
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_8ka8v")
+
+[node name="Cd" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Cd" to="." method="_on_cd_timeout"]
